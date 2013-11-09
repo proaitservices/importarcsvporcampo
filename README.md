@@ -1,4 +1,4 @@
-Basado en el módulo original:
+Basado en el módulo original de [hans]:
 
 http://todoprestashop.com/foro/viewtopic.php?f=15&t=5274
 
