@@ -9,6 +9,7 @@
  *              Actualiza campo "on_sale" (en rebajas)
  * v 2.0.0: Compatible con PS 1.5
  * v 2.0.1: 	Variable $sql2 no inicalizada
+ * v 2.1.0: Añade subida de fichero
  */
 class ImportarCsvPorCampo extends Module
 {
@@ -283,6 +284,15 @@ class ImportarCsvPorCampo extends Module
                                                         $this->cargarCSV();
                                         }
                         }
+						if (Tools::isSubmit('submitUPLOAD')){
+							$resultadoUpload=$this->subeArchivo();
+							if ($resultadoUpload!="") {
+								$errors[] = $resultadoUpload;
+								$output .= $this->displayError(implode('<br />', $errors));
+                                $error = 1;
+								
+							}
+						}
 
                         return $output.$this->displayForm();
 
@@ -498,9 +508,51 @@ class ImportarCsvPorCampo extends Module
                                                         $output .= '
                                                         </center>
                                         </fieldset>
-                        </form>';
+                        </form>
+                        <fieldset><legend>'.$this->l('Sube archivo').'</legend>
+                        <label  for="userfile">'.$this->l('Subir fichero').'</label>
+                                                        <div class="margin-form">
+															<form action="'.$_SERVER['REQUEST_URI'].'" method="post" enctype="multipart/form-data">
+															<fieldset>
+																<input type="hidden" name="MAX_FILE_SIZE" value="102400000" />
+																<input name="userfile" type="file" id="userfile" />
+																<input type="submit" name="submitUPLOAD" value="subir" />
+															</fieldset>
+															</form> 
+                                                        </div>
+                                                        
+                                                        <div style="clear:both">&nbsp;</div>
+                         </fieldset>
+                        ';
                         return $output;
         }
+        
+        /** Procesa la subuida de un archivo
+         * y lo deja como update.csv en el directorio del módulo
+         **/
+        public function subeArchivo()
+        {
+			// En versiones de PHP anteriores a 4.1.0, $HTTP_POST_FILES debe utilizarse en lugar
+			// de $_FILES.
+			$output = "";
+			//$uploaddir = '/explo/canalpyme/clientes/100000/aa100000/site_proa/htdocs/ip/upload/';
+			//$uploadfile = $uploaddir . basename($_FILES['userfile']['name']);
+			
+			$uploadfile = dirname(__FILE__)."/update.csv";
+			if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile)) {
+				$output="El archivo fue cargado exitosamente.";
+			} else {
+				$output="Error al cargar el archivo";
+			}
+
+			/**
+			echo 'DEBUG[';
+			echo $uploadfile;
+			print_r($_FILES);
+			echo ']';
+			**/
+			return $output;
+		}
 
 }
 
