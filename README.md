@@ -44,6 +44,6 @@ Con estos datos, sólo hay que decir en el módulo:
 Poco más, si todo está ok lo actualizará (los productos con variedades no se actualizarán)
 Creo que es completo y suficiente.
 
-pd: no se os olvide subir el fichero "update.csv" dentro de la carpeta de ese módulo
+pd: no se os olvide subir el fichero "update.csv" dentro de la carpeta de ese módulo por FTP o mediante el propio módulo
 saludos
 
