@@ -2,7 +2,7 @@
         <module>
             <name>importarcsvporcampo</name>
             <displayName><![CDATA[ImportarCsvPorCampo]]></displayName>
-            <version><![CDATA[2.0.0]]></version>
+            <version><![CDATA[2.1.0]]></version>
             <description><![CDATA[Actualizar tu tabla de productos importando por un campo]]></description>
             <author><![CDATA[]]></author>
             <tab><![CDATA[http://todoprestashop.com | [hans] | Adaptado por Proa It Services]]></tab>
