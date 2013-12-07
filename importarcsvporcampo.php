@@ -8,7 +8,7 @@
  * v 1.5.1:     No importa precios no numericos
  *              Actualiza campo "on_sale" (en rebajas)
  * v 2.0.0: Compatible con PS 1.5
- * v 2.0.1: 	Variable $sql2 no inicalizada
+ * v 2.0.1: Variable $sql2 no inicalizada
  * v 2.1.0: Añade subida de fichero
  */
 class ImportarCsvPorCampo extends Module
