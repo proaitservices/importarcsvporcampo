@@ -1,20 +1,5 @@
 <?php
-/**********
- * v 2.3 Quita logotipo
- * v 1.3: Añadide referencia interna como campo modificable
- * v 1.4: Añade peso como campo modificable
- * v 1.4.1: Corregido bug: no importa valores no numéricos
- * v 1.5.0: Añade campo "activo" como campo modificable
- * v 1.5.1:     No importa precios no numericos
- *              Actualiza campo "on_sale" (en rebajas)
- * v 2.0.0: Compatible con PS 1.5
-<<<<<<< HEAD
- * v 2.0.1: Variable $sql2 no inicalizada
-=======
- * v 2.0.1: 	Variable $sql2 no inicalizada
->>>>>>> 8ce8c25b2681e25795570339d78015184435b6c0
- * v 2.1.0: Añade subida de fichero
- */
+
 class ImportarCsvPorCampo extends Module
 {
 
@@ -29,7 +14,7 @@ class ImportarCsvPorCampo extends Module
 
                 $this->displayName = $this->l('ImportarCsvPorCampo');
                 $this->description = $this->l('Actualizar tu tabla de productos importando por un campo');
-                $this->version = '2.0.1';
+                $this->version = '2.1.1';
 
                 $campo_buscar = strval(Configuration::get('IMPORTARCSVPORCAMPO_buscar'));
                 $caracter_separador = strval(Configuration::get('IMPORTARCSVPORCAMPO_separador'));
@@ -132,7 +117,7 @@ class ImportarCsvPorCampo extends Module
                                                 WHERE ".$quebuscar." = '".trim($campo)."'";
                                         $sql2 = "update `"._DB_PREFIX_."product_shop`
                                                 SET ".$campo_actualizar."='".$valor."'
-                                                WHERE id_product = (SELECT id_product FROM "._DB_PREFIX_."product WHERE ".$quebuscar." = ".intval($campo) . ")";
+                                                WHERE id_product = (SELECT id_product FROM "._DB_PREFIX_."product WHERE ".$quebuscar." = '".$campo."' )";
                                         break;
                                 case "quantity":
                                         $sql = "update `"._DB_PREFIX_."product`
@@ -141,7 +126,7 @@ class ImportarCsvPorCampo extends Module
 
                                         $sql2 = "update `"._DB_PREFIX_."stock_available`
                                                 SET ".$campo_actualizar."=".$valor."
-                                                WHERE id_product = (SELECT id_product FROM "._DB_PREFIX_."product WHERE ".$quebuscar." = ".intval($campo) . ")";
+                                                WHERE id_product = (SELECT id_product FROM "._DB_PREFIX_."product WHERE ".$quebuscar." = '".$campo."' )";
                                         break;
                                 case "reference":
                                         $sql = "update `"._DB_PREFIX_."product`
@@ -159,7 +144,7 @@ class ImportarCsvPorCampo extends Module
                                                 WHERE ".$quebuscar." = '".trim($campo)."'";
                                         $sql2 = "update `"._DB_PREFIX_."product_shop`
                                                 SET ".$campo_actualizar."='".$valor."'
-                                                WHERE id_product = (SELECT id_product FROM "._DB_PREFIX_."product WHERE ".$quebuscar." = ".intval($campo) . ")";
+                                                WHERE id_product = (SELECT id_product FROM "._DB_PREFIX_."product WHERE ".$quebuscar." = '".$campo."' )";
                                         break;
                                 case "on_sale":
                                         $sql = "update `"._DB_PREFIX_."product`
@@ -167,7 +152,7 @@ class ImportarCsvPorCampo extends Module
                                                 WHERE ".$quebuscar." = '".trim($campo)."'";
                                         $sql2 = "update `"._DB_PREFIX_."product_shop`
                                                 SET ".$campo_actualizar."='".$valor."'
-                                                WHERE id_product = (SELECT id_product FROM "._DB_PREFIX_."product WHERE ".$quebuscar." = ".intval($campo) . ")";
+                                                WHERE id_product = (SELECT id_product FROM "._DB_PREFIX_."product WHERE ".$quebuscar." = '".$campo."')";
                                         break;
                                 default:
                                         // No implementado en 1.5
