@@ -17,6 +17,8 @@ VERSIONES
   NEW: Actualiza campo "on_sale" (en rebajas)
  * v 2.0.0: NEW: Compatible con PS 1.5
  * v 2.0.1: BUG: Variable $sql2 no inicalizada
+ * v 2.1.0: NEW: subida de fichero via web
+ * v 2.2.1: BUG: No actualizaba referencias no numéricas
  
  
 INSTRUCCIONES
